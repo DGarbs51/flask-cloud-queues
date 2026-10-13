@@ -25,7 +25,7 @@ from pathlib import Path
 
 from app import LOG_TEST_LEVELS, LOG_TEST_UNICODE
 
-APP = "TODO"
+APP = "app-a2f7dab8-e81a-4ae7-870c-84493946fe9c"
 # Cloudflare's browser integrity check rejects Python's default user agent with 403.
 HEADERS = {"User-Agent": "Mozilla/5.0"}
 if os.environ.get("K6_BYPASS"):
