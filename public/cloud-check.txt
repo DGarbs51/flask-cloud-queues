@@ -1,0 +1,1 @@
+cloud-check-static-v1: served by nginx from public/

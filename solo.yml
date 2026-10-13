@@ -1,0 +1,62 @@
+# Visit https://soloterm.com to learn more
+name: flask-cloud-queues
+icon: null
+processes:
+  Web:
+    command: "uv run --env-file .env python -m laravel_cloud_logging.pretty -- python serve.py"
+    working_dir: null
+    auto_start: true
+    auto_restart: true
+    restart_when_changed:
+    - app.py
+    - telemetry.py
+    - wsgi.py
+    - serve.py
+    - checks.py
+    - throughput.py
+    - .env
+    - logs.py
+    env: {}
+  Worker:
+    command: uv run --env-file .env python -m laravel_cloud_logging.pretty -- laravel-cloud-queues work --queue=default --sleep=0
+    working_dir: null
+    auto_start: true
+    auto_restart: true
+    restart_when_changed:
+    - app.py
+    - telemetry.py
+    - wsgi.py
+    - serve.py
+    - checks.py
+    - throughput.py
+    - .env
+    - logs.py
+    env: {}
+  uv sync:
+    command: uv sync
+    working_dir: null
+    auto_start: false
+    auto_restart: false
+    restart_when_changed: []
+    env: {}
+  update deps:
+    command: uv lock --upgrade && uv sync
+    working_dir: null
+    auto_start: false
+    auto_restart: false
+    restart_when_changed: []
+    env: {}
+  test:
+    command: uv run python app.py --self-check && uv run --env-file .env python test_checks.py && uv run --env-file .env python test_throughput.py && uv run --env-file .env python test_servers.py
+    working_dir: null
+    auto_start: false
+    auto_restart: false
+    restart_when_changed: []
+    env: {}
+  test 3.11 + 3.14:
+    command: uv run --python 3.11 python test_servers.py && uv run --python 3.14 python test_servers.py
+    working_dir: null
+    auto_start: false
+    auto_restart: false
+    restart_when_changed: []
+    env: {}

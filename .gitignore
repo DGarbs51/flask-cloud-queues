@@ -3,4 +3,5 @@ __pycache__/
 .env
 results/
 .cloud/
+.uv-cache/
 logging.json

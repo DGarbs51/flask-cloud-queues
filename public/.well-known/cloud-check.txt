@@ -1,0 +1,1 @@
+cloud-check-static-v1: .well-known is served
