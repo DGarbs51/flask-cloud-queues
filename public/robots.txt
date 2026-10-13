@@ -1,0 +1,3 @@
+# cloud-check-static-v1
+User-agent: *
+Disallow:

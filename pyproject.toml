@@ -1,0 +1,25 @@
+[project]
+name = "flask-cloud-queues"
+version = "0.0.0"
+description = "Flask WSGI canary for Laravel Cloud and managed queues."
+requires-python = ">=3.11"
+dependencies = [
+    "flask>=3.1.0",
+    "laravel-cloud-queues[redis]>=0.5.0",
+    "laravel-cloud-logging==0.4.0",
+    "pymysql",
+    "certifi",
+    "gunicorn",
+    "granian>=2.8.4",
+    "hypercorn>=0.18.0",
+    "waitress>=3.0.2",
+    "pyuwsgi>=2.0.30.post1",
+    "psycopg[binary]>=3.3.6",
+]
+
+[tool.uv]
+package = false
+
+# Cloud's generated worker command has no explicit target.
+[tool.laravel-cloud-queues]
+target = "app:registry"
