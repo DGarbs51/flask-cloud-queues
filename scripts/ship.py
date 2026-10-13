@@ -16,7 +16,7 @@ import sys
 import tempfile
 import time
 
-APP = "TODO"
+APP = "app-a2f7dab8-e81a-4ae7-870c-84493946fe9c"
 FINISHED = ("deployment.succeeded", "deployment.failed", "build.failed", "deployment.cancelled")
 
 
