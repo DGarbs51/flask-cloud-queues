@@ -76,7 +76,10 @@ def main() -> None:
     deadline = time.time() + 1800
     while pending and time.time() < deadline:
         for name, (env_id, branch) in list(pending.items()):
-            latest = max(cloud("deployment:list", env_id), key=lambda d: d.get("createdAt") or d.get("startedAt") or "")
+            deployments = cloud("deployment:list", env_id)
+            if not deployments:
+                continue  # a new environment: its first deployment hasn't been created yet
+            latest = max(deployments, key=lambda d: d.get("createdAt") or d.get("startedAt") or "")
             if not heads[branch].startswith(latest.get("commitHash") or "-"):
                 continue  # the push hasn't started a deployment yet
             if latest["status"] in FINISHED:
